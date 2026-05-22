@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шифратор текста</title>
+    <link rel="stylesheet" href="start.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🔐 Шифратор текста</h1>
+            <p class="subtitle">Кодируйте и декодируйте текст с помощью шифра Цезаря</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content-wrapper">
+
+            <section class="input-section">
+                <div class="section-card">
+                    <h2>📝 Исходный текст</h2>
+                    <textarea 
+                        class="input-text" 
+                        id="text" 
+                        placeholder="Введите текст, который хотите зашифровать или расшифровать..."
+                    ></textarea>
+                </div>
+
+                <div class="settings-card">
+                    <h3>⚙️ Настройки</h3>
+                    
+                    <div class="setting-group">
+                        <label for="mode-selector">Тип шифра:</label>
+                        <select id="mode-selector" class="control-select">
+                            <option value="standard">Стандартный Цезарь</option>
+                            <option value="custom">Кастомный Цезарь</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="number-selector">Сдвиг (1-33):</label>
+                        <div class="shift-controls">
+                            <select id="number-selector" name="number" onchange="syncValues()" class="control-select">
+                                <script>
+                                for (let i = 1; i <= 33; i++) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="custom-number">Своё значение:</label>
+                        <input
+                            type="number"
+                            id="custom-number"
+                            name="custom_number"
+                            placeholder="от -100 до 100"
+                            min="-100"
+                            max="100"
+                            value="1"
+                            oninput="syncValues()"
+                            class="control-input"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section class="button-section">
+                <button class="action-btn encrypt-btn" onclick="encryptText()">
+                    <span>🔒</span>
+                    <span>Зашифровать</span>
+                </button>
+                <button class="action-btn decrypt-btn" onclick="decryptText()">
+                    <span>🔓</span>
+                    <span>Расшифровать</span>
+                </button>
+            </section>
+
+            <section class="output-section">
+                <div class="section-card">
+                    <h2>📋 Результат</h2>
+                    <div class="result-container">
+                        <p class="result-text" id="result">Результат появится здесь...</p>
+                    </div>
+                    <button class="copy-btn" onclick="copyResult()" title="Скопировать результат">
+                        📋 Скопировать
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>Шифр Цезаря — один из самых простых методов шифрования ©️ 2026 Ваши права вот вообще не защищены</p>
+    </footer>
+
+    <script src="./start.js"></script>
+</body>
+</html>
